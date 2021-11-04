@@ -8,6 +8,7 @@
             </div>
             <button type="submit">Get Info</button>
         </form>
+        <h1 id="result"></h1>
     </body>
     <script>
         const electron = require('electron');
@@ -19,5 +20,9 @@
 
             ipcRenderer.send('video:submit', path);
         });
+
+        ipcRenderer.on('video:duration', (event, duration) => {
+            document.querySelector('#result').innerHTML = `Video is ${duration} seconds long`
+        })
     </script>
 </head>
